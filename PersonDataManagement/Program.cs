@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonDataManagement
 {
@@ -13,7 +10,7 @@ namespace PersonDataManagement
             List<Person> people = new List<Person>();
             PersonAddDetails(people);
             Console.WriteLine("");
-            Averageage(people);
+            SearchName(people, "Priti");
             Console.ReadLine();
         }
 
@@ -38,11 +35,23 @@ namespace PersonDataManagement
             }
         }
 
-        //UC4 calculating average age of list
-        public static void Averageage(List<Person> people)
+        //UC5 search a specific name present or not
+        public static void SearchName(List<Person> people, string name)
         {
-            double average = people.Average<Person>(p =>p.Age);
-            Console.WriteLine("Average age: ", +average);
+            var result = people.Find(p => p.Name == name);
+            try
+            {
+                if (result != null)
+                {
+                    Console.WriteLine("The name is Present: "  +result.SSN+ " " +result.Name);
+                }
+                else
+                    Console.WriteLine("The name is not present");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }    
 }
