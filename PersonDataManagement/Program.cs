@@ -11,7 +11,7 @@ namespace PersonDataManagement
             List<Person> people = new List<Person>();
             PersonAddDetails(people);
             Console.WriteLine("");
-            RetrieveAgemorethan60(people);
+            RemoveName(people, "Priti");
             Console.ReadLine();
         }
 
@@ -36,13 +36,36 @@ namespace PersonDataManagement
             }
         }
 
-        //UC6 rectrive age greater than 60 and use Skip() to skip record as per requirement
-        public static void RetrieveAgemorethan60(List<Person> people)
+        //Search a specific name present or not
+        public static Person SearchName(List<Person> people, string name)
         {
-            Console.WriteLine("Displaying person details above 60 age");
-            List<Person> result = people.FindAll(person => person.Age > 60).Skip(1).ToList();
-            IterateLoop(result);
+            var result = people.Find(p => p.Name == name);
+            try
+            {
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                    Console.WriteLine("The name is not present");
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
-
+        //UC7 remove specific name 
+        public static void RemoveName(List<Person> people, string name)
+        {
+            Person result = SearchName(people, name);
+            Console.WriteLine("Removing {0} from the list", name);
+            if (result != null)
+                people.Remove(result);
+            Console.WriteLine();
+            Console.WriteLine("After remove operation:");
+            IterateLoop(people);
+        }
     }    
 }
