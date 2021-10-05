@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PersonDataManagement
 {
@@ -10,7 +11,7 @@ namespace PersonDataManagement
             List<Person> people = new List<Person>();
             PersonAddDetails(people);
             Console.WriteLine("");
-            SearchName(people, "Priti");
+            RetrieveAgemorethan60(people);
             Console.ReadLine();
         }
 
@@ -35,23 +36,13 @@ namespace PersonDataManagement
             }
         }
 
-        //UC5 search a specific name present or not
-        public static void SearchName(List<Person> people, string name)
+        //UC6 rectrive age greater than 60 and use Skip() to skip record as per requirement
+        public static void RetrieveAgemorethan60(List<Person> people)
         {
-            var result = people.Find(p => p.Name == name);
-            try
-            {
-                if (result != null)
-                {
-                    Console.WriteLine("The name is Present: "  +result.SSN+ " " +result.Name);
-                }
-                else
-                    Console.WriteLine("The name is not present");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Displaying person details above 60 age");
+            List<Person> result = people.FindAll(person => person.Age > 60).Skip(1).ToList();
+            IterateLoop(result);
         }
+
     }    
 }
