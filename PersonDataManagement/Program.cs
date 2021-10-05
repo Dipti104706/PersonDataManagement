@@ -12,7 +12,8 @@ namespace PersonDataManagement
         {
             List<Person> people = new List<Person>();
             PersonAddDetails(people);
-            RetrieveTop2Records(people);
+            Console.WriteLine("");
+            RetrieveTeenAgeRecords(people);
             Console.ReadLine();
         }
 
@@ -37,27 +38,11 @@ namespace PersonDataManagement
             }
         }
 
-        //UC2 to get Top 2 records age less than 60
-        public static void RetrieveTop2Records(List<Person> people)
+        //UC3 to show recods age greater than 13 less than 18 
+        public static void RetrieveTeenAgeRecords(List<Person> people)
         {
-            //List<Person> AgeLessthan60 = people.FindAll(person => person.Age < 60);
-            //Console.WriteLine("Displaying person details if age is less than 60");
-            //IterateLoop(AgeLessthan60);
-
-            //List<Person> SortedResult = AgeLessthan60.OrderBy(s => s.Age).ToList();
-            //Console.WriteLine("Displaying person details after sort");
-            //IterateLoop(SortedResult);
-
-            //List<Person> Top2 = SortedResult.Take(2).ToList();
-            //Console.WriteLine("Displaying person details of top 2");
-            //IterateLoop(Top2);
-
-            //All 9 lines can be written in a single line using lambda
-            Console.WriteLine("Displaying person details of top 2 with age less than 60");
-            //Findall() used to get all Ages accoding to the expression
-            //Orderby() used to sort list in ascending order
-            //Take(2) show onlu first two records
-            List<Person> result = people.FindAll(person => person.Age < 60).OrderBy(s => s.Age).Take(2).ToList();
+            Console.WriteLine("Displaying person details of teen age");
+            List<Person> result = people.FindAll(p => p.Age >= 13 && p.Age <= 18).ToList();
             IterateLoop(result);
         }
     }
