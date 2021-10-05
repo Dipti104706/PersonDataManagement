@@ -13,7 +13,7 @@ namespace PersonDataManagement
             List<Person> people = new List<Person>();
             PersonAddDetails(people);
             Console.WriteLine("");
-            RetrieveTeenAgeRecords(people);
+            Averageage(people);
             Console.ReadLine();
         }
 
@@ -38,12 +38,11 @@ namespace PersonDataManagement
             }
         }
 
-        //UC3 to show recods age greater than 13 less than 18 
-        public static void RetrieveTeenAgeRecords(List<Person> people)
+        //UC4 calculating average age of list
+        public static void Averageage(List<Person> people)
         {
-            Console.WriteLine("Displaying person details of teen age");
-            List<Person> result = people.FindAll(p => p.Age >= 13 && p.Age <= 18).ToList();
-            IterateLoop(result);
+            double average = people.Average<Person>(p =>p.Age);
+            Console.WriteLine("Average age: ", +average);
         }
-    }
+    }    
 }
